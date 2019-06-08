@@ -1,4 +1,4 @@
-from pytorch_pretrained_bert.modeling import PreTrainedBertModel, BertModel, BertLayerNorm, gelu, BertEncoder, BertPooler
+from pytorch_pretrained_bert.modeling import BertPreTrainedModel, BertModel, BertLayerNorm, gelu, BertEncoder, BertPooler
 import torch
 from torch import nn
 from utils import fuzzy_find, find_start_end_after_tokenized, find_start_end_before_tokenized, bundle_part_to_batch
@@ -123,7 +123,7 @@ class BertModelPlus(BertModel):
         encoded_layers, hidden_layers = encoded_layers[-1], encoded_layers[output_hidden]
         return encoded_layers, hidden_layers
 
-class BertForMultiHopQuestionAnswering(PreTrainedBertModel):
+class BertForMultiHopQuestionAnswering(BertPreTrainedModel):
     def __init__(self, config):
         super(BertForMultiHopQuestionAnswering, self).__init__(config)
         self.bert = BertModelPlus(config)
